@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  PLANTILLA DE ARTÍCULO — NO SE PUBLICA NI SE ENLAZA
+  ============================================================================
+  Para crear un artículo nuevo:
+
+  1. Copia este archivo dentro de la carpeta blog/ y renómbralo con el slug
+     del artículo, en minúsculas y con guiones. Ejemplo:
+     blog/residuos-peligrosos-almacen-temporal.html
+
+  2. Sustituye TODOS los marcadores {{...}}:
+       {{TITULO}}      Título del artículo (máx. ~60 caracteres para el <title>)
+       {{DESCRIPCION}} Resumen de 140-160 caracteres para Google
+       {{SLUG}}        El nombre del archivo, sin la carpeta. Ej: mi-articulo.html
+       {{FECHA-ISO}}   Fecha en formato AAAA-MM-DD. Ej: 2026-10-14
+       {{FECHA-LARGA}} Fecha legible. Ej: 14 de octubre de 2026
+       {{FECHA-CORTA}} Fecha corta. Ej: 14 oct 2026
+       {{CATEGORIA}}   Auditorías | Impacto Ambiental | Asesoría | Capacitación
+       {{CAT-SLUG}}    auditorias | impacto | asesoria | capacitacion
+       {{MINUTOS}}     Tiempo de lectura. Aprox. palabras ÷ 200
+       {{ENTRADILLA}}  Primer párrafo, en el <p class="lead">
+       {{CUERPO}}      El artículo. Usa <h2 id="...">, <p>, <ul>, <ol>,
+                       <blockquote> y <div class="table-wrap"><table>...
+
+  3. Quita la línea <meta name="robots" content="noindex,nofollow"> y déjala como
+     <meta name="robots" content="index,follow">.
+
+  4. Añade la tarjeta del artículo AL PRINCIPIO de la lista en blog/index.html.
+
+  5. Añade la URL nueva a sitemap.xml, con su <lastmod>.
+
+  6. Borra este comentario.
+  ============================================================================
+-->
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITULO}}</title>
+<meta name="description" content="{{DESCRIPCION}}">
+<link rel="canonical" href="https://proyectos-ambientales-sustentables.com/blog/{{SLUG}}">
+<meta name="theme-color" content="#0F1F17">
+<meta name="robots" content="noindex,nofollow">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_MX">
+<meta property="og:site_name" content="Proyectos Ambientales y Sustentables">
+<meta property="og:title" content="{{TITULO}}">
+<meta property="og:description" content="{{DESCRIPCION}}">
+<meta property="og:url" content="https://proyectos-ambientales-sustentables.com/blog/{{SLUG}}">
+<meta property="og:image" content="https://proyectos-ambientales-sustentables.com/assets/img/og-default.jpg">
+<meta property="article:published_time" content="{{FECHA-ISO}}">
+<meta property="article:section" content="{{CATEGORIA}}">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="../assets/img/logo-pas.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<div class="progress" aria-hidden="true"><div class="progress__bar"></div></div>
+
+<header class="site-header">
+  <div class="container header__inner">
+    <a class="brand" href="../index.html" aria-label="PAS Proyectos Ambientales y Sustentables, inicio">
+      <img src="../assets/img/logo-pas.png" alt="PAS Proyectos Ambientales y Sustentables" width="128" height="59">
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menú de navegación">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="menu-principal" aria-label="Navegación principal">
+      <ul class="nav__list">
+        <li><a class="nav__link" href="../index.html">Inicio</a></li>
+        <li><a class="nav__link" href="../servicios.html">Servicios</a></li>
+        <li><a class="nav__link" href="../cursos.html">Cursos</a></li>
+        <li><a class="nav__link" href="index.html" aria-current="page">Blog</a></li>
+        <li><a class="nav__link" href="../nosotros.html">Nosotros</a></li>
+        <li><a class="btn btn--primary btn--sm" href="../contacto.html">Cotizar</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <section class="hero hero--page">
+    <div class="hero__glow" aria-hidden="true"></div>
+    <div class="container container--narrow hero__inner">
+      <nav class="breadcrumb" aria-label="Ruta de navegación">
+        <a href="../index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html">Blog</a><span aria-hidden="true">/</span>{{CATEGORIA}}
+      </nav>
+      <h1>{{TITULO}}</h1>
+      <p class="article__meta">
+        <span class="tag tag--gold">{{CATEGORIA}}</span>
+        <time datetime="{{FECHA-ISO}}">{{FECHA-LARGA}}</time>
+        <span>·</span><span>{{MINUTOS}} min de lectura</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="container">
+      <article class="article">
+
+        <p class="lead">{{ENTRADILLA}}</p>
+
+        <!-- Índice: un <li> por cada <h2 id="..."> del cuerpo.
+             Si el artículo es corto (menos de 4 secciones), borra este bloque. -->
+        <nav class="toc" aria-label="Contenido del artículo">
+          <p class="toc__title">En este artículo</p>
+          <ul>
+            <li><a href="#seccion-1">Título de la primera sección</a></li>
+            <li><a href="#seccion-2">Título de la segunda sección</a></li>
+            <li><a href="#seccion-3">Título de la tercera sección</a></li>
+          </ul>
+        </nav>
+
+        {{CUERPO}}
+
+        <!-- Ejemplos de los bloques disponibles. Bórralos al terminar.
+
+        <h2 id="seccion-1">Un encabezado de sección</h2>
+        <p>Un párrafo normal, con <strong>texto destacado</strong> y un
+           <a class="link" href="que-es-una-auditoria-ambiental.html">enlace interno</a>.</p>
+
+        <ul>
+          <li><strong>Un punto.</strong> Con su explicación.</li>
+          <li>Otro punto.</li>
+        </ul>
+
+        <ol>
+          <li>Un paso numerado.</li>
+          <li>El siguiente.</li>
+        </ol>
+
+        <blockquote>Una frase que resume la idea central de la sección.</blockquote>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Columna</th><th>Columna</th></tr></thead>
+            <tbody><tr><td>Dato</td><td>Dato</td></tr></tbody>
+          </table>
+        </div>
+
+        -->
+
+        <p style="font-size:.9rem;font-style:italic;margin-top:2.5em">Este artículo tiene fines informativos y no sustituye una asesoría formal. La normativa aplicable depende del giro, el tamaño y la ubicación de cada instalación.</p>
+
+        <div class="article-cta">
+          <h3>¿Necesitas apoyo con esto?</h3>
+          <p>En PAS acompañamos a la industria en auditorías, estudios de impacto ambiental, asesoría y capacitación. Cuéntanos tu caso.</p>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="../contacto.html">Solicitar cotización <span class="arrow" aria-hidden="true">&rarr;</span></a>
+            <!-- CAMBIAR-TELEFONO -->
+            <a class="btn btn--ghost" href="https://wa.me/525559657126?text=Hola%20PAS%2C%20tengo%20una%20consulta." target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+          </div>
+        </div>
+
+      </article>
+    </div>
+  </section>
+
+  <!-- Sustituye estas dos tarjetas por los artículos relacionados que
+       correspondan al tema. -->
+  <section class="section section--sand section--tight">
+    <div class="container">
+      <h2 class="text-center">Sigue leyendo</h2>
+      <div class="grid grid-2 mt-5">
+        <a class="card post-card reveal" href="que-es-una-auditoria-ambiental.html">
+          <p class="post-card__meta"><span class="tag">Auditorías</span><time datetime="2026-08-18">18 ago 2026</time></p>
+          <h3>¿Qué es una auditoría ambiental y cuándo la necesita tu empresa?</h3>
+          <p>Qué revisa una auditoría, en qué se diferencia de una inspección y cómo se desarrolla.</p>
+          <span class="card__more">Leer artículo <span class="arrow" aria-hidden="true">&rarr;</span></span>
+        </a>
+        <a class="card post-card reveal" href="manifestacion-impacto-ambiental-guia.html">
+          <p class="post-card__meta"><span class="tag">Impacto Ambiental</span><time datetime="2026-08-25">25 ago 2026</time></p>
+          <h3>Manifestación de Impacto Ambiental (MIA): guía práctica para tu proyecto</h3>
+          <p>Cuándo se requiere, qué modalidad aplica y cuánto tarda la resolución.</p>
+          <span class="card__more">Leer artículo <span class="arrow" aria-hidden="true">&rarr;</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <p class="mark">PA<span>S</span></p>
+        <p>Proyectos Ambientales y Sustentables. Unidad de verificación en materia de gestión ambiental para la industria mexicana.</p>
+      </div>
+      <div>
+        <p class="footer__title">Servicios</p>
+        <ul class="footer__list">
+          <li><a href="../servicios.html#auditorias">Auditorías Ambientales</a></li>
+          <li><a href="../servicios.html#impacto">Estudios de Impacto Ambiental</a></li>
+          <li><a href="../servicios.html#asesoria">Asesoría Ambiental</a></li>
+          <li><a href="../servicios.html#capacitacion">Capacitación</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__title">Empresa</p>
+        <ul class="footer__list">
+          <li><a href="../nosotros.html">Nosotros</a></li>
+          <li><a href="../cursos.html">Cursos</a></li>
+          <li><a href="index.html">Blog</a></li>
+          <li><a href="../contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__title">Contacto</p>
+        <ul class="footer__list">
+          <li><a href="mailto:cotizaciones@proyectos-ambientales-sustentables.com">cotizaciones@proyectos-ambientales-sustentables.com</a></li>
+          <!-- CAMBIAR-TELEFONO -->
+          <li><a href="https://wa.me/525559657126" target="_blank" rel="noopener">WhatsApp 55 2067 6290</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; <span data-year>2026</span> Proyectos Ambientales y Sustentables. Todos los derechos reservados.</p>
+      <p>Ciudad de México, México</p>
+    </div>
+  </div>
+</footer>
+
+<!-- CAMBIAR-TELEFONO -->
+<a class="wa-float" href="https://wa.me/525559657126?text=Hola%20PAS%2C%20tengo%20una%20consulta." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
+</a>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{TITULO}}",
+  "description": "{{DESCRIPCION}}",
+  "inLanguage": "es-MX",
+  "datePublished": "{{FECHA-ISO}}",
+  "dateModified": "{{FECHA-ISO}}",
+  "articleSection": "{{CATEGORIA}}",
+  "image": "https://proyectos-ambientales-sustentables.com/assets/img/og-default.jpg",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://proyectos-ambientales-sustentables.com/blog/{{SLUG}}" },
+  "author": { "@type": "Person", "name": "Helio E. Castro", "jobTitle": "Auditor Coordinador" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "PAS - Proyectos Ambientales y Sustentables",
+    "logo": { "@type": "ImageObject", "url": "https://proyectos-ambientales-sustentables.com/assets/img/logo-pas.png" }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://proyectos-ambientales-sustentables.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://proyectos-ambientales-sustentables.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "{{TITULO}}", "item": "https://proyectos-ambientales-sustentables.com/blog/{{SLUG}}" }
+  ]
+}
+</script>
+
+<script src="../assets/js/site.js" defer></script>
+</body>
+</html>
